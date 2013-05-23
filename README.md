@@ -52,6 +52,17 @@ if($result2->succes){
 }
 ```
 
+#### Debugging
+The library contains a nice debugger so that you can see the requests sent to the server and the corresponding response.
+
+To enable:
+```php
+$client->debug(true);
+```
+
+The client will then produce some HTML output showing the request and the response. This feature is best used when testing
+in a browser.
+
 ### Testing
 ----------------------------------------------------------------------------
 
