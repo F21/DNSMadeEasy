@@ -35,9 +35,9 @@ $client = new DNSMadeEasy\Client('myapikey', 'mysecretkey', true); //The last pa
 $result = $client->domains->add('testdomain.com');
 
 if($result->success){
-   //yay!
-   var_dump($result->statusCode);
-   var_dump($result->body);
+  //yay!
+  var_dump($result->statusCode);
+  var_dump($result->body);
 }else{
   //:(
   var_dump($result->errors);
@@ -46,9 +46,9 @@ if($result->success){
 $result2 = $client->domains->update($result->body->id, array('gtdEnabled' => true)); //Enable global traffic direct for that domain
 
 if($result2->succes){
-   //yay!
+  //yay!
 }else{
-   //:(
+  //:(
 }
 ```
 
