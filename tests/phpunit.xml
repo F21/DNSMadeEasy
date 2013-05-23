@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<phpunit  bootstrap="bootstrap.php" colors="true" verbose="true" backupGlobals="false">
+  <testsuites>
+    <testsuite name="DNSMadeEasy">
+        <directory>.</directory>
+    </testsuite>
+  </testsuites>
+
+  <filter>
+    <whitelist addUncoveredFilesFromWhitelist="true">
+      <directory suffix=".php">../DNSMadeEasy</directory>
+    </whitelist>
+  </filter>
+
+  <logging>
+    <log type="coverage-html" target="coverage-html" charset="UTF-8" />
+  </logging>
+
+</phpunit>
