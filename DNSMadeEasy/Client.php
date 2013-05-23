@@ -9,7 +9,7 @@ use DNSMadeEasy\resource\VanityDNS;
 use DNSMadeEasy\resource\Templates;
 use DNSMadeEasy\resource\TemplateRecords;
 use DNSMadeEasy\resource\TransferACL;
-use DNSMadeEasy\resource\Folder;
+use DNSMadeEasy\resource\Folders;
 use DNSMadeEasy\resource\Usage;
 use DNSMadeEasy\resource\Failover;
 use DNSMadeEasy\resource\Secondary;
@@ -136,7 +136,7 @@ class Client
         $this->templates = new Templates($this->_driver);
         $this->templateRecords = new TemplateRecords($this->_driver);
         $this->transferACL = new TransferACL($this->_driver);
-        $this->folder = new Folder($this->_driver);
+        $this->folders = new Folders($this->_driver);
         $this->usage = new Usage($this->_driver);
         $this->failover = new Failover($this->_driver);
         $this->secondary = new Secondary($this->_driver);
