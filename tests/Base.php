@@ -26,13 +26,14 @@ class Base extends \PHPUnit_Framework_TestCase
     /**
      * Grab the api key and secret key from the environment.
      */
-    public function __construct($name = NULL, array $data = array(), $dataName = '') {
-    	$this->_apiKey = getenv('APIKEY');
+    public function __construct($name = NULL, array $data = array(), $dataName = '')
+    {
+        $this->_apiKey = getenv('APIKEY');
         $this->_secretKey = getenv('SECRETKEY');
-        
-    	parent::__construct($name, $data, $dataName);
+
+        parent::__construct($name, $data, $dataName);
     }
-    
+
     /**
      * Get an instance of the DNSMadeEasy client.
      * @param  string              $apiKey     The api key.
