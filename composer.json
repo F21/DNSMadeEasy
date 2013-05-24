@@ -1,0 +1,40 @@
+{
+	"name" : "f21/dnsmadeeasy",
+	"description" : "A simple php library to work with DNSMadeEasy's API v2.0",
+	"type" : "library",
+	"authors" : [{
+			"name" : "Francis Chuang",
+			"email" : "francis.chuang@gmail.com",
+			"homepage" : "https://github.com/F21",
+			"role" : "Creator"
+		}
+	],
+	"keywords" : [
+		"DNSMadeEasy",
+		"PHP",
+		"API"
+	],
+	"homepage" : "https://github.com/F21/DNSMadeEasy",
+	"license" : [
+		"Apache-2.0"
+	],
+	"require" : {
+		"php" : ">=5.4.0"
+	},
+	"autoload" : {
+		"psr-0" : {
+			"DNSMadeEasy" : "DNSMadeEasy/"
+		}
+	},
+	"support" : {
+		"source" : "https://github.com/F21/DNSMadeEasy",
+		"issues" : "https://github.com/F21/DNSMadeEasy/issues",
+		"wiki" : "https://github.com/F21/DNSMadeEasy/wiki"
+	},
+	"repositories" : [{
+			"name" : "Paradox",
+			"type" : "vcs",
+			"url" : "https://github.com/triAGENS/ArangoDB-PHP"
+		}
+	]
+}
