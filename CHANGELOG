@@ -1,3 +1,9 @@
+v1.0.1 (2013-09-17)
+-----------------------
+
+* Access to resources is now via methods.
+* Increased timeout.
+
 v1.0.0 (2013-05-24)
 -----------------------
 

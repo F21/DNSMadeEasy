@@ -2,18 +2,6 @@
 namespace DNSMadeEasy;
 use DNSMadeEasy\driver\Configuration;
 use DNSMadeEasy\driver\REST;
-use DNSMadeEasy\resource\Domains;
-use DNSMadeEasy\resource\Records;
-use DNSMadeEasy\resource\SoaRecords;
-use DNSMadeEasy\resource\VanityDNS;
-use DNSMadeEasy\resource\Templates;
-use DNSMadeEasy\resource\TemplateRecords;
-use DNSMadeEasy\resource\TransferACL;
-use DNSMadeEasy\resource\Folders;
-use DNSMadeEasy\resource\Usage;
-use DNSMadeEasy\resource\Failover;
-use DNSMadeEasy\resource\Secondary;
-use DNSMadeEasy\resource\SecondaryRecords;
 
 /**
  * DNSMadeEasy is a PHP library to talk with DNSMadeEasy's v2.0 REST API.
@@ -45,78 +33,6 @@ class Client
     private $_driver;
 
     /**
-     * Domain management commands.
-     * @var Domains
-     */
-    public $domains;
-
-    /**
-     * Record mangement commands.
-     * @var Records
-     */
-    public $records;
-
-    /**
-     * SOA record management commands.
-     * @var SoaRecords
-     */
-    public $soaRecords;
-
-    /**
-     * VanityDNS management commands.
-     * @var VanityDNS
-     */
-    public $vanityDNS;
-
-    /**
-     * Template management commands.
-     * @var Templates
-     */
-    public $templates;
-
-    /**
-     * Template record management commands.
-     * @var TemplateRecords
-     */
-    public $templateRecords;
-
-    /**
-     * TransferACL management commands.
-     * @var TransferACL
-     */
-    public $transferACL;
-
-    /**
-     * Folder management commands.
-     * @var Folder
-     */
-    public $folder;
-
-    /**
-     * Usage commands.
-     * @var Usage
-     */
-    public $usage;
-
-    /**
-     * Failover management commands.
-     * @var Failover
-     */
-    public $failover;
-
-    /**
-     * Secondary management commands.
-     * @var Secondary
-     */
-    public $secondary;
-
-    /**
-     * Secondary records managementcommands.
-     * @var SecondaryRecords
-     */
-    public $secondaryRecords;
-
-    /**
      * Construct the client.
      * @param string  $apiKey     DNSMadeEasy API key.
      * @param string  $secretKey  DNSMadeEasy secret key.
@@ -127,20 +43,19 @@ class Client
         //Set up the driver.
         $this->_config = new Configuration($apiKey, $secretKey, $useSandbox);
         $this->_driver = new REST($this->_config);
-
-        //Setup the commands.
-        $this->domains = new Domains($this->_driver);
-        $this->records = new Records($this->_driver);
-        $this->soaRecords = new SoaRecords($this->_driver);
-        $this->vanityDNS = new VanityDNS($this->_driver);
-        $this->templates = new Templates($this->_driver);
-        $this->templateRecords = new TemplateRecords($this->_driver);
-        $this->transferACL = new TransferACL($this->_driver);
-        $this->folders = new Folders($this->_driver);
-        $this->usage = new Usage($this->_driver);
-        $this->failover = new Failover($this->_driver);
-        $this->secondary = new Secondary($this->_driver);
-        $this->secondaryRecords = new SecondaryRecords($this->_driver);
+    }
+    
+    public function __call($method, $args)
+    {
+    	$class_name = '\DNSMadeEasy\resource\\' . ucfirst($method);
+    
+    	if (class_exists($class_name)) {
+    		$class = new $class_name($this->_driver);
+    
+    		return $class;
+    	} else {
+    		throw new \BadMethodCallException('Call to undefined method '.get_class($this).'::'.$method.'()');
+    	}
     }
 
     /**
