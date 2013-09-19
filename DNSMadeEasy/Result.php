@@ -1,6 +1,7 @@
 <?php
 namespace DNSMadeEasy;
 use DNSMadeEasy\driver\Response;
+use DNSMadeEasy\exception\ResultErrorException;
 
 /**
  * DNSMadeEasy is a PHP library to talk with DNSMadeEasy's v2.0 REST API.
@@ -103,5 +104,21 @@ class Result
             $this->requestLimit = $response->getHeaders()['x-dnsme-requestLimit'];
         }
 
+        if(!$this->success){
+        	throw new ResultErrorException($this);
+        }
+    }
+    
+    public function __toString(){
+    	if(!empty($this->errors)){
+    		
+    		if(is_array($this->errors)){
+    			return implode(', ', $this->errors);
+    		}
+    		
+    		return $this->errors;
+    	}
+    	
+    	return null;
     }
 }

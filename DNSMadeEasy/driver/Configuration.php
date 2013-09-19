@@ -29,18 +29,24 @@ class Configuration
      * @var string
      */
     private $_secretKey;
+    
+    /**
+     * The version
+     * @var string
+     */
+    private $_version = 'V2.0';
 
     /**
      * The sandbox URL.
      * @var string
      */
-    private $_sandboxURL = "https://api.sandbox.dnsmadeeasy.com/V2.0";
+    private $_sandboxURL = "https://api.sandbox.dnsmadeeasy.com/";
 
     /**
      * The production URL.
      * @var string
      */
-    private $_apiURL = "https://api.dnsmadeeasy.com/V2.0";
+    private $_apiURL = "https://api.dnsmadeeasy.com/";
 
     /**
      * Whether the sandbox should be used or not.
@@ -92,9 +98,9 @@ class Configuration
     public function getURL()
     {
         if ($this->_useSandbox) {
-            return $this->_sandboxURL;
+            return $this->_sandboxURL . $this->_version;
         } else {
-            return $this->_apiURL;
+            return $this->_apiURL . $this->_version;
         }
     }
 

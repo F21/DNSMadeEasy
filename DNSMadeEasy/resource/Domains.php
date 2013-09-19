@@ -89,6 +89,23 @@ class Domains
 
         return $this->_driver->delete("/dns/managed/", $data);
     }
+    
+    /**
+     * Delete all domains.
+     * @return \DNSMadeEasy\Result
+     */
+    public function deleteAll()
+    {
+    	$domains = $this->getAll();
+    	
+    	$ids = array();
+    	
+    	foreach ($domains->body->data as $domain){
+    		$ids[] = $domain->id;
+    	}
+    	
+    	return $this->_driver->delete("/dns/managed/", $ids);
+    }
 
     /**
      * Update a domain by its id.
