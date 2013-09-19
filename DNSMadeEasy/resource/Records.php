@@ -60,13 +60,18 @@ class Records
 
     /**
      * Add a record to a domain.
+     * To insert multiple records at once, $config should be an array containing array of records.
      * @param  integer             $domainId The id of the domain.
      * @param  array               $config   The configuration for the record.
      * @return \DNSMadeEasy\Result
      */
     public function add($domainId, array $config)
     {
-        return $this->_driver->post("/dns/managed/$domainId/records", $config);
+    	if(is_array($config[0])){
+    		return $this->_driver->post("/dns/managed/$domainId/records/createMulti", $config);
+    	}else{
+    		return $this->_driver->post("/dns/managed/$domainId/records", $config);
+    	}
     }
 
     /**
@@ -86,13 +91,19 @@ class Records
 
     /**
      * Update a record.
+     * To update multiple records at once, $data should be an array containing array of records and $recordId is not needed.
      * @param  integer             $domainId The id of the domain.
      * @param  integer             $recordId The id of the record.
      * @param  array               $data     The new configuration for the record.
      * @return \DNSMadeEasy\Result
      */
-    public function update($domainId, $recordId, array $data)
+    public function update($domainId, array $data, $recordId = null)
     {
-        return $this->_driver->put("/dns/managed/$domainId/records/$recordId", $data);
+    	if(is_array($data[0])){
+    		return $this->_driver->put("/dns/managed/$domainId/records/updateMulti", $data);
+    	}else{
+    		return $this->_driver->put("/dns/managed/$domainId/records/$recordId", $data);
+    	}
+        
     }
 }
