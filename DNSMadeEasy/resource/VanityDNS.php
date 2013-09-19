@@ -74,6 +74,27 @@ class VanityDNS
     {
         return $this->_driver->delete("/dns/vanity/$id");
     }
+    
+    /**
+     * Delete all vanity DNS configuration.
+     * @return \DNSMadeEasy\Result
+     */
+    public function deleteAll()
+    {
+    	$vanityDNS = $this->getAll();
+    	
+    	$counter = 0;
+    	
+    	foreach ($vanityDNS->body->data as $config){
+    		
+    		if(!$config->public){
+    			$counter++;
+    			$this->delete($config->id); //This is inefficient, but DME does not provide a mass delete method.
+    		}
+    	}
+    	 
+    	return $counter > 0;
+    }
 
     /**
      * Update a vanity DNS configuration.

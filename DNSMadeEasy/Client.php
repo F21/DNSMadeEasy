@@ -31,6 +31,12 @@ class Client
      * @var REST
      */
     private $_driver;
+    
+    /**
+     * Cache the created objects for performance.
+     * @var array
+     */
+    private $_objectCache = array();
 
     /**
      * Construct the client.
@@ -47,11 +53,19 @@ class Client
     
     public function __call($method, $args)
     {
+    	$lower = strtolower($method);
+    	
+    	if(array_key_exists($lower, $this->_objectCache)){
+    		return $this->_objectCache[$lower];
+    	}
+    	
     	$class_name = '\DNSMadeEasy\resource\\' . ucfirst($method);
     
     	if (class_exists($class_name)) {
     		$class = new $class_name($this->_driver);
     
+    		$this->_objectCache[$lower] = $class;
+    		
     		return $class;
     	} else {
     		throw new \BadMethodCallException('Call to undefined method '.get_class($this).'::'.$method.'()');

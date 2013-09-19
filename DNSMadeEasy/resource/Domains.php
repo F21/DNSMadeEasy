@@ -104,7 +104,11 @@ class Domains
     		$ids[] = $domain->id;
     	}
     	
-    	return $this->_driver->delete("/dns/managed/", $ids);
+    	if(!empty($ids)){
+    		return $this->_driver->delete("/dns/managed/", $ids);
+    	}else{
+    		return false;
+    	}
     }
 
     /**
@@ -115,9 +119,9 @@ class Domains
     public function update($id, array $config)
     {
         if (is_array($id)) {
-            $data = array('names' => $id);
+            $data = array('ids' => $id);
         } else {
-            $data = array('names' => array($id));
+            $data = array('ids' => array($id));
         }
 
         $data = array_merge($data, $config);

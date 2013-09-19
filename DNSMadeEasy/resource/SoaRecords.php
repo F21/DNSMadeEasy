@@ -74,6 +74,24 @@ class SoaRecords
     {
         return $this->_driver->delete("/dns/soa/$id");
     }
+    
+    /**
+     * Delete all SoA records.
+     * @return \DNSMadeEasy\Result
+     */
+    public function deleteAll()
+    {
+    	$records = $this->getAll();
+    	
+    	$counter = 0;
+    	
+    	foreach ($records->body->data as $record){
+    		$counter++;
+    		$this->delete($record->id); //This is inefficient, but DME does not provide a mass delete method.
+    	}
+    	 
+    	return $counter > 0;
+    }
 
     /**
      * Update a SoA record.
