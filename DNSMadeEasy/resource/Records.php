@@ -67,9 +67,20 @@ class Records
      */
     public function add($domainId, array $config)
     {
+    	
+    	$default = array('ttl' => 1800, 'gtdLocation' => 'DEFAULT');
+    	 
     	if(is_array($config[0])){
+    		
+    		foreach ($config as &$record) {
+    			$record = array_merge($default, $record);
+    		}
+    		
     		return $this->_driver->post("/dns/managed/$domainId/records/createMulti", $config);
+    		
     	}else{
+    		
+    		$config = array_merge($default, $config);
     		return $this->_driver->post("/dns/managed/$domainId/records", $config);
     	}
     }

@@ -62,6 +62,15 @@ class SoaRecords
      */
     public function add(array $config)
     {
+    	$default = array('ttl' => 86400,
+		    			 'serial' => 2012020201,
+		    			 'refresh' => 14400,
+		    			 'retry' => 1800,
+		    			 'expire' => 86400,
+		    			 'negativeCache' => 1800);
+    	
+    	$config = array_merge($default, $config);
+    	
         return $this->_driver->post("/dns/soa", $config);
     }
 
