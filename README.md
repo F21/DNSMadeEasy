@@ -32,7 +32,7 @@ Here's a simple example:
 
 ```php
 $client = new DNSMadeEasy\Client('myapikey', 'mysecretkey', true); //The last parameter says to use the sandbox
-$result = $client->domains->add('testdomain.com');
+$result = $client->domains()->add('testdomain.com');
 
 if($result->success){
   //yay!
@@ -43,9 +43,9 @@ if($result->success){
   var_dump($result->errors);
 }
 
-$result2 = $client->domains->update($result->body->id, array('gtdEnabled' => true)); //Enable global traffic direct for that domain
+$result2 = $client->domains()->update($result->body->id, array('gtdEnabled' => true)); //Enable global traffic direct for that domain
 
-if($result2->succes){
+if($result2->success){
   //yay!
 }else{
   //:(
