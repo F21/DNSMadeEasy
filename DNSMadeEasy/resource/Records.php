@@ -70,7 +70,7 @@ class Records
     	
     	$default = array('ttl' => 1800, 'gtdLocation' => 'DEFAULT');
     	 
-    	if(is_array($config[0])){
+    	if(is_array(reset($config))){
     		
     		foreach ($config as &$record) {
     			$record = array_merge($default, $record);
