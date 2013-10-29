@@ -110,7 +110,7 @@ class Records
      */
     public function update($domainId, array $data, $recordId = null)
     {
-    	if(is_array($data[0])){
+    	if(is_array(reset($data))){
     		return $this->_driver->put("/dns/managed/$domainId/records/updateMulti", $data);
     	}else{
     		return $this->_driver->put("/dns/managed/$domainId/records/$recordId", $data);
