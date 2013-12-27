@@ -112,6 +112,14 @@ class Configuration
     {
         $this->_useSandbox = (boolean) $value;
     }
+    
+    /**
+     * Tells us whether the sandbox is being used or not.
+     * @return boolean
+     */
+    public function usingSandbox(){
+    	return $this->_useSandbox;
+    }
 
     /**
      * Sets whether debug mode is on or off.
