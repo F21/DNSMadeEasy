@@ -1,3 +1,8 @@
+v1.0.2 (XXXX-XX-XX)
+-----------------------
+
+* Added workaround for faulty certificate on https://api.sandbox.dnsmadeeasy.com.
+
 v1.0.1 (2013-09-17)
 -----------------------
 
