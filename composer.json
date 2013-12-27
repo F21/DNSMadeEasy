@@ -23,7 +23,7 @@
 	},
 	"autoload" : {
 		"psr-0" : {
-			"DNSMadeEasy" : "DNSMadeEasy/"
+			"DNSMadeEasy" : "."
 		}
 	},
 	"support" : {
