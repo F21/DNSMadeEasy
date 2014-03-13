@@ -26,7 +26,7 @@ DNSMadeEasy\Autoloader::init();
 
 #### Using the library
 The operations are all contained in the `resource` classes. Look for them inside the `resource` folder.
-If a body is avalible, the library tries to decode the JSON object, so you can access the object directly under the `body` property.
+If a body is available, the library tries to decode the JSON object, so you can access the object directly under the `body` property.
 
 Here's a simple example:
 
@@ -66,12 +66,12 @@ in a browser.
 ### Testing
 ----------------------------------------------------------------------------
 
-_Note: I started writing tests for the resources class (classes that represents DME operations like domains, records etc), however,
+<em>Note: I started writing tests for the resources class (classes that represents DME operations like domains, records etc), however,
 I had lots of problems trying to get them to work against DME's sandbox. Mainly because things like adding and deleting domains would
 take a long time for a unit test. Deleting domains would also not delete immediately, and I have deleted domains stuck in my 
 account for more than a few days. I have stopped working on those tests for now, but contributions and pull request are certainly
 much appreciated! I hope that someone can build a `fake_DME` like [fake_braintree](https://github.com/thoughtbot/fake_braintree), so
-that it is easier to test the resources and also, so that we can run tests on travi._
+that it is easier to test the resources and also, so that we can run tests on Travis.</em>
 
 To run the tests, you need to set some environment variables. On Linux, you can set them this way:
 
