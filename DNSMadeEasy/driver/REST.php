@@ -163,11 +163,13 @@ class REST
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
         curl_setopt($ch, CURLOPT_HEADER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        
+
         if($this->_config->usingSandbox()){
-        	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); //Temporary workaround because https://api.sandbox.dnsmadeeasy.com uses a bad certificate
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); //Temporary workaround because https://api.sandbox.dnsmadeeasy.com uses a bad certificate
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         }else{
-        	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
         }
 
         $result = curl_exec($ch);
