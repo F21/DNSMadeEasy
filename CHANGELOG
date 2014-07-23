@@ -1,7 +1,18 @@
-v1.0.2 (XXXX-XX-XX)
+v1.0.4 (2014-07-23)
+-----------------------
+
+* Updated CURLOPT_SSL_VERIFYHOST to use 2 in production mode and disabled CURLOPT_SSL_VERIFYPEER for the sandbox.
+
+v1.0.3 (2014-04-29)
+-----------------------
+
+* Secondary DNS's update method was using wrong key.
+
+v1.0.2 (2014-01-04)
 -----------------------
 
 * Added workaround for faulty certificate on https://api.sandbox.dnsmadeeasy.com.
+* Fixed composer.json.
 
 v1.0.1 (2013-09-17)
 -----------------------
