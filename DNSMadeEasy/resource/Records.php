@@ -113,6 +113,7 @@ class Records
     	if(is_array(reset($data))){
     		return $this->_driver->put("/dns/managed/$domainId/records/updateMulti", $data);
     	}else{
+            $data['id'] = $recordId;
     		return $this->_driver->put("/dns/managed/$domainId/records/$recordId", $data);
     	}
         
