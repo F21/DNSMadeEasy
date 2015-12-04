@@ -59,6 +59,18 @@ class Records
     }
 
     /**
+     * Get a record for a domain by record name.
+     * @param  integer             $domainId The id of the domain.
+     * @param  string              $recordName The name of the record.
+     * @param  string              $type The type of record.
+     * @return \DNSMadeEasy\Result
+     */
+    public function getRecord($domainId, $recordName, $type=null)
+    {
+        return $this->_driver->get("/dns/managed/$domainId/records{?recordName,type}", array('recordName' => $recordName, 'type' => $type));
+    }
+
+    /**
      * Add a record to a domain.
      * To insert multiple records at once, $config should be an array containing array of records.
      * @param  integer             $domainId The id of the domain.
