@@ -197,6 +197,12 @@ class Response
     {
         assert(is_string($message));
 
+        /**
+         * when you do bulk records insert DnsMadeEasy adds "HTTP/1.1 100 Continue\n\n"
+         *  in front of other headers, which breaks everything else
+        **/
+        $message = trim(preg_replace('/^HTTP\/1.1 100 Continue[\n\r]/', '', $message));
+
         $barrier = "\r\n\r\n";
         $border  = strpos($message, $barrier);
 
