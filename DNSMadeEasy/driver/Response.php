@@ -108,11 +108,11 @@ class Response
      * @param string $response  The response containing the headers and body as a string.
      * @param float  $timeTaken The time taken in seconds.
      */
-    public function __construct($response, $timeTaken)
+    public function __construct($response, $timeTaken, $method = false)
     {
         $this->_timeTaken = $timeTaken;
 
-        $parsed = $this->parseMessage($response);
+        $parsed = $this->parseMessage($response, $method);
 
         $this->_rawHeaders = $parsed['headers'];
         $this->_body = trim($this->fixJSON($parsed['body']));
@@ -193,7 +193,7 @@ class Response
      * @throws RESTException
      * @return array
      */
-    private function parseMessage($message)
+    private function parseMessage($message, $method)
     {
         assert(is_string($message));
 
@@ -207,7 +207,11 @@ class Response
         $border  = strpos($message, $barrier);
 
         if ($border === false) {
-            throw new RESTException('Got an invalid response from the server.');
+            if ('put' == $method) {
+                $border = strlen($message);
+            } else {
+                throw new RESTException('Got an invalid response from the server.');
+            }
         }
 
         $result = array();
