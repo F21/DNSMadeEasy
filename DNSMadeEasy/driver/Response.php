@@ -104,6 +104,15 @@ class Response
     );
 
     /**
+     * These methods won't receive a response body
+     * @var array
+     */
+    private $_httpMethodsWithoutBody = array(
+        'delete',
+        'put',
+    );
+
+    /**
      * Construct the driver response.
      * @param string $response  The response containing the headers and body as a string.
      * @param float  $timeTaken The time taken in seconds.
@@ -207,7 +216,7 @@ class Response
         $border  = strpos($message, $barrier);
 
         if ($border === false) {
-            if ('put' == $method) {
+	    if (in_array($method,$this->_httpMethodsWithoutBody)) {
                 $border = strlen($message);
             } else {
                 throw new RESTException('Got an invalid response from the server.');
