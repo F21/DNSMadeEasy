@@ -183,7 +183,7 @@ class REST
 
         $info = curl_getinfo($ch);
         $request = new Request($info, $content);
-        $response = new Response($result, $info['total_time']);
+        $response = new Response($result, $info['total_time'], $method);
 
         //If debug mode is on, output the debug messages.
         if ($this->_config->getDebug()) {
