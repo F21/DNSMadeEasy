@@ -128,4 +128,15 @@ class Domains
 
         return $this->_driver->put("/dns/managed", $data);
     }
+
+    /**
+     * Search for a specific record in a domain where domainId equals {$id} by the name of {$recordName} and type of {type}.
+     * @param  integer              $id
+     * @param  string               $recordName
+     * @param  string               $type An optional parameter.
+     * @return \DNSMadeEasy\Result
+     */
+    public function getRecordByName($id, $recordName, $type = "A"){
+        return $this->_driver->get("V2.0/dns/managed/$id/records?recordName=$recordName&type=$type");
+    }
 }
