@@ -77,7 +77,7 @@ class SecondaryRecords
     public function delete($domainId, $recordId)
     {
         if (is_array($recordId)) {
-            return $this->_driver->delete("/dns/secondary/$domainId/records?ids=" . implode($recordId, '&ids='));
+            return $this->_driver->delete("/dns/secondary/$domainId/records?ids=" . implode('&ids=', $recordId));
         } else {
             return $this->_driver->delete("/dns/secondary/$domainId/records/$recordId");
         }

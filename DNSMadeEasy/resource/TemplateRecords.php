@@ -67,7 +67,7 @@ class TemplateRecords
     public function delete($templateId, $recordId)
     {
         if (is_array($recordId)) {
-            return $this->_driver->delete("/dns/template/$templateId/records?ids=" . implode($recordId, '&ids='));
+            return $this->_driver->delete("/dns/template/$templateId/records?ids=" . implode('&ids=', $recordId));
         } else {
             return $this->_driver->delete("/dns/template/$templateId/records/$recordId");
         }
